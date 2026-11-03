@@ -6,15 +6,15 @@ namespace Tavaan\Engine\Queue;
 
 final class Worker
 {
-    public function run(/* ... */): mixed
+    public function run()
     {
         return null;
     }
-    public function stop(/* ... */): mixed
+    public function stop()
     {
         return null;
     }
-    public function daemon(/* ... */): mixed
+    public function daemon()
     {
         return null;
     }
