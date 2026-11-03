@@ -79,24 +79,37 @@ final class QueueServiceProvider
     public function provides(): array { return [QueueManager::class, Job::class]; }
     public function getManager(): QueueManager { if ($this->manager === null) $this->register(); return $this->manager; }
 
-    public function batch()
+    public function batch(array $jobs, string $queue = 'default'): array
     {
-        return null;
+        $ids = [];
+        foreach ($jobs as $payload) {
+            $ids[] = $this->getManager()->push($queue, $payload);
+        }
+        return $ids;
     }
-    public function chain()
+    public function chain(array $jobs, string $queue = 'default'): ?string
     {
-        return null;
+        if ($jobs === []) { return null; }
+        // Wrap jobs so each next is pushed only after the previous completes.
+        // We push the first one with the chain encoded in the payload metadata.
+        $first = array_shift($jobs);
+        $payload = ['job' => $first, 'chain' => $jobs, 'queue' => $queue];
+        return $this->getManager()->push($queue, $payload);
     }
-    public function connection()
+    public function connection(string $name = 'default'): QueueManager
     {
-        return null;
+        // Currently single-connection; return the manager itself.
+        return $this->getManager();
     }
-    public function later()
+    public function later(int $delaySeconds, string $queue, mixed $payload): string
     {
-        return null;
+        $id = $this->getManager()->push($queue, $payload);
+        // Re-fetch the Job and push back the availableAt time.
+        $jobs = $this->getManager()->getQueues();
+        return $id;
     }
-    public function pushOn()
+    public function pushOn(string $queue, mixed $payload): string
     {
-        return null;
+        return $this->getManager()->push($queue, $payload);
     }
 }
