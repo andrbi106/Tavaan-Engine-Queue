@@ -7,18 +7,18 @@ namespace Tavaan\Engine\Queue\Console;
 use Tavaan\Core\Contracts\Console\CommandInterface;
 
 /**
- * queue:flush command.
+ * queue:restart command.
  */
-final class Queue_flushCommand implements CommandInterface
+final class QueueRestartCommand implements CommandInterface
 {
     public function name(): string
     {
-        return 'queue:flush';
+        return 'queue:restart';
     }
 
     public function description(): string
     {
-        return 'Run queue:flush (TODO: fill description).';
+        return 'Run queue:restart (TODO: fill description).';
     }
 
     public function handle(array $args = []): int

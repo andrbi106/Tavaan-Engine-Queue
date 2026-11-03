@@ -9,7 +9,7 @@ use Tavaan\Core\Contracts\Console\CommandInterface;
 /**
  * queue:listen command.
  */
-final class Queue_listenCommand implements CommandInterface
+final class QueueListenCommand implements CommandInterface
 {
     public function name(): string
     {

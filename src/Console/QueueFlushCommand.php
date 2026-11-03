@@ -7,18 +7,18 @@ namespace Tavaan\Engine\Queue\Console;
 use Tavaan\Core\Contracts\Console\CommandInterface;
 
 /**
- * queue:failed command.
+ * queue:flush command.
  */
-final class Queue_failedCommand implements CommandInterface
+final class QueueFlushCommand implements CommandInterface
 {
     public function name(): string
     {
-        return 'queue:failed';
+        return 'queue:flush';
     }
 
     public function description(): string
     {
-        return 'Run queue:failed (TODO: fill description).';
+        return 'Run queue:flush (TODO: fill description).';
     }
 
     public function handle(array $args = []): int

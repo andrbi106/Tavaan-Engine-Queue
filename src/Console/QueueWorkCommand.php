@@ -7,18 +7,18 @@ namespace Tavaan\Engine\Queue\Console;
 use Tavaan\Core\Contracts\Console\CommandInterface;
 
 /**
- * queue:prune-failed command.
+ * queue:work command.
  */
-final class Queue_pruneFailedCommand implements CommandInterface
+final class QueueWorkCommand implements CommandInterface
 {
     public function name(): string
     {
-        return 'queue:prune-failed';
+        return 'queue:work';
     }
 
     public function description(): string
     {
-        return 'Run queue:prune-failed (TODO: fill description).';
+        return 'Run queue:work (TODO: fill description).';
     }
 
     public function handle(array $args = []): int

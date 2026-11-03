@@ -7,18 +7,18 @@ namespace Tavaan\Engine\Queue\Console;
 use Tavaan\Core\Contracts\Console\CommandInterface;
 
 /**
- * queue:retry command.
+ * queue:failed command.
  */
-final class Queue_retryCommand implements CommandInterface
+final class QueueFailedCommand implements CommandInterface
 {
     public function name(): string
     {
-        return 'queue:retry';
+        return 'queue:failed';
     }
 
     public function description(): string
     {
-        return 'Run queue:retry (TODO: fill description).';
+        return 'Run queue:failed (TODO: fill description).';
     }
 
     public function handle(array $args = []): int
