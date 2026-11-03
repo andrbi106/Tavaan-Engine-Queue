@@ -54,7 +54,8 @@ $qm = new QueueManager();
         // Scenario T-05
 $qm = new QueueManager();
         $hit = 0;
-        $qm->push("default", fn() => $hit++);
+        $hitRef = &$hit;
+        $qm->push("default", function () use (&$hitRef) { $hitRef++; });
         $w = new Worker($qm);
         $stats = $w->run(max: 10);
         $this->assertSame(1, $stats["processed"]);
@@ -63,9 +64,10 @@ $qm = new QueueManager();
     public function test_t06_get_queues(): void
     {
         // Scenario T-06
-$qm = new QueueManager(["default" => "sync", "queues" => ["q1" => [], "q2" => []]]);
+$qm = new QueueManager(["default" => "default", "queues" => ["q1" => [], "q2" => []]]);
         $queues = $qm->getQueues();
         $this->assertContains("default", $queues);
         $this->assertContains("q1", $queues);
+        $this->assertContains("q2", $queues);
     }
 }
