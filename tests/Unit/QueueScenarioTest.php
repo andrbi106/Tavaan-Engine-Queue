@@ -15,7 +15,7 @@ use Tavaan\Engine\Queue\Worker;
  */
 final class QueueScenarioTest extends TestCase
 {
-    public function t01_push_pop(): void
+    public function test_t01_push_pop(): void
     {
         // Scenario T-01
 $qm = new QueueManager();
@@ -25,13 +25,13 @@ $qm = new QueueManager();
         $this->assertNotNull($job);
         $this->assertSame($id, $job->id);
     }
-    public function t02_pop_empty_returns_null(): void
+    public function test_t02_pop_empty_returns_null(): void
     {
         // Scenario T-02
 $qm = new QueueManager();
         $this->assertNull($qm->pop("default"));
     }
-    public function t03_delete_removes_job(): void
+    public function test_t03_delete_removes_job(): void
     {
         // Scenario T-03
 $qm = new QueueManager();
@@ -40,7 +40,7 @@ $qm = new QueueManager();
         $qm->delete($job);
         $this->assertSame(0, $qm->size("default"));
     }
-    public function t04_release_returns_job_to_queue(): void
+    public function test_t04_release_returns_job_to_queue(): void
     {
         // Scenario T-04
 $qm = new QueueManager();
@@ -49,7 +49,7 @@ $qm = new QueueManager();
         $qm->release($job, delay: 0);
         $this->assertSame(1, $qm->size("default"));
     }
-    public function t05_worker_runs_handler(): void
+    public function test_t05_worker_runs_handler(): void
     {
         // Scenario T-05
 $qm = new QueueManager();
@@ -60,7 +60,7 @@ $qm = new QueueManager();
         $this->assertSame(1, $stats["processed"]);
         $this->assertSame(1, $hit);
     }
-    public function t06_get_queues(): void
+    public function test_t06_get_queues(): void
     {
         // Scenario T-06
 $qm = new QueueManager(["default" => "sync", "queues" => ["q1" => [], "q2" => []]]);
