@@ -2,73 +2,59 @@
 
 declare(strict_types=1);
 
-/*
- * تَوان | Tavaan — Queue
- * config/queue.php — پیکربندی صف و worker (DOC-061 §8).
+/*|--------------------------------------------------------------------------
+ | Queue Engine Configuration
+ |--------------------------------------------------------------------------
+ |
+ | پیکربندی موتور queue — همهٔ کلیدهای مستندشده در `docs/03-engines/queue.md` بخش «پیکربندی».
+ |
+ |@see https://github.com/Derogaramin/Tavaan-Doc/blob/main/docs/03-engines/queue.md
  */
 
 return [
-    'default' => env_string('TVN_QUEUE_CONNECTION', 'database'),
+    /*| پیش‌فرض موتور (driver/store یا حالت فعال) */
+    'default' => env('QUEUE_DEFAULT', 'sync'),
 
-    'connections' => [
+    /*| لیست درایورها */
+    'drivers' => [
         'sync' => [
-            'driver' => 'sync',
+            // پیکربندی درایور sync
+            'enabled' => true,
         ],
-
         'database' => [
-            'driver' => 'database',
-            'table' => 'tvn_jobs',
-            'connection' => null,          // null = اتصال پیش‌فرض database
-            'queue' => 'default',
-            'retry_after' => 90,           // ثانیه؛ reserved گیرکرده پس از این مدت برمی‌گردد
+            // پیکربندی درایور database
+            'enabled' => true,
         ],
-
         'redis' => [
-            'driver' => 'redis',
-            'host' => env_string('TVN_REDIS_HOST', '127.0.0.1'),
-            'port' => env_int('TVN_REDIS_PORT', 6379),
-            'password' => env_string('TVN_REDIS_PASSWORD', ''),
-            'database' => env_int('TVN_REDIS_DB', 0),
-            'prefix' => env_string('TVN_QUEUE_PREFIX', 'tvn:'),
-            'timeout' => 3.0,
-            'queue' => 'default',
-            'retry_after' => 90,
-            'block_for' => null,
+            // پیکربندی درایور redis
+            'enabled' => true,
         ],
-
         'file' => [
-            'driver' => 'file',
-            'path' => storage_path('queue'),
-            'queue' => 'default',
+            // پیکربندی درایور file
+            'enabled' => true,
         ],
-
         'null' => [
-            'driver' => 'null',
+            // پیکربندی درایور null
+            'enabled' => true,
         ],
     ],
 
-    'failed' => [
-        'driver' => env_string('TVN_QUEUE_FAILED_DRIVER', 'database'),
-        'table' => 'tvn_failed_jobs',
-        'dlq' => env_string('TVN_QUEUE_DLQ', ''),   // صف مرده (اختیاری): jobهای شکست‌خورده اینجا هم کپی می‌شوند
+    /*| کلید کش (در صورت استفاده) */
+    'prefix' => env('QUEUE_PREFIX', 'queue:'),
+
+    /*| تنظیمات لاگ */
+    'log' => [
+        'channel' => env('QUEUE_LOG_CHANNEL', 'queue'),
     ],
 
-    'batching' => [
-        'driver' => env_string('TVN_QUEUE_BATCH_DRIVER', 'database'),
-        'table' => 'tvn_job_batches',
+    /*| Facade */
+    'facade' => [
+        'name' => 'Queue',
+        'accessor' => 'queue',
     ],
 
-    'worker' => [
-        'sleep' => env_int('TVN_QUEUE_SLEEP', 3),
-        'max_tries' => env_int('TVN_QUEUE_MAX_TRIES', 3),
-        'max_time' => env_int('TVN_QUEUE_MAX_TIME', 0),
-        'max_jobs' => env_int('TVN_QUEUE_MAX_JOBS', 0),
-        'memory' => env_int('TVN_QUEUE_MEMORY', 128),
-    ],
-
-    // 🔒 Allowlist سریال‌سازی — فقط این پیشوندها/کلاس‌ها از payload بازسازی می‌شوند
-    'allowlist' => [
-        'prefixes' => ['App\\', 'Tavaan\\', 'Modules\\', 'Kits\\', 'Plugins\\'],
-        'classes' => [],
+    /*| سایر کلیدها (طبق مستندات) */
+    'options' => [
+        // TODO: کلیدهای اضافی طبق سند §۶ (پیکربندی)
     ],
 ];
