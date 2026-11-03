@@ -14,4 +14,58 @@ use Tavaan\Engine\Queue\Worker;
  * Generated from ROADMAP.md scenarios — real implementations, not placeholders.
  */
 final class QueueScenarioTest extends TestCase
-{'    public function t01_push_pop(): void\n    {\n        // Scenario T-01\n$qm = new QueueManager();\n        $id = $qm->push("default", fn() => "executed");\n        $this->assertSame(1, $qm->size("default"));\n        $job = $qm->pop("default");\n        $this->assertNotNull($job);\n        $this->assertSame($id, $job->id);\n    }\n    public function t02_pop_empty_returns_null(): void\n    {\n        // Scenario T-02\n$qm = new QueueManager();\n        $this->assertNull($qm->pop("default"));\n    }\n    public function t03_delete_removes_job(): void\n    {\n        // Scenario T-03\n$qm = new QueueManager();\n        $id = $qm->push("default", "payload");\n        $job = $qm->pop("default");\n        $qm->delete($job);\n        $this->assertSame(0, $qm->size("default"));\n    }\n    public function t04_release_returns_job_to_queue(): void\n    {\n        // Scenario T-04\n$qm = new QueueManager();\n        $qm->push("default", "p");\n        $job = $qm->pop("default");\n        $qm->release($job, delay: 0);\n        $this->assertSame(1, $qm->size("default"));\n    }\n    public function t05_worker_runs_handler(): void\n    {\n        // Scenario T-05\n$qm = new QueueManager();\n        $hit = 0;\n        $qm->push("default", fn() => $hit++);\n        $w = new Worker($qm);\n        $stats = $w->run(max: 10);\n        $this->assertSame(1, $stats["processed"]);\n        $this->assertSame(1, $hit);\n    }\n    public function t06_get_queues(): void\n    {\n        // Scenario T-06\n$qm = new QueueManager(["default" => "sync", "queues" => ["q1" => [], "q2" => []]]);\n        $queues = $qm->getQueues();\n        $this->assertContains("default", $queues);\n        $this->assertContains("q1", $queues);\n    }'}
+{
+    public function t01_push_pop(): void
+    {
+        // Scenario T-01
+$qm = new QueueManager();
+        $id = $qm->push("default", fn() => "executed");
+        $this->assertSame(1, $qm->size("default"));
+        $job = $qm->pop("default");
+        $this->assertNotNull($job);
+        $this->assertSame($id, $job->id);
+    }
+    public function t02_pop_empty_returns_null(): void
+    {
+        // Scenario T-02
+$qm = new QueueManager();
+        $this->assertNull($qm->pop("default"));
+    }
+    public function t03_delete_removes_job(): void
+    {
+        // Scenario T-03
+$qm = new QueueManager();
+        $id = $qm->push("default", "payload");
+        $job = $qm->pop("default");
+        $qm->delete($job);
+        $this->assertSame(0, $qm->size("default"));
+    }
+    public function t04_release_returns_job_to_queue(): void
+    {
+        // Scenario T-04
+$qm = new QueueManager();
+        $qm->push("default", "p");
+        $job = $qm->pop("default");
+        $qm->release($job, delay: 0);
+        $this->assertSame(1, $qm->size("default"));
+    }
+    public function t05_worker_runs_handler(): void
+    {
+        // Scenario T-05
+$qm = new QueueManager();
+        $hit = 0;
+        $qm->push("default", fn() => $hit++);
+        $w = new Worker($qm);
+        $stats = $w->run(max: 10);
+        $this->assertSame(1, $stats["processed"]);
+        $this->assertSame(1, $hit);
+    }
+    public function t06_get_queues(): void
+    {
+        // Scenario T-06
+$qm = new QueueManager(["default" => "sync", "queues" => ["q1" => [], "q2" => []]]);
+        $queues = $qm->getQueues();
+        $this->assertContains("default", $queues);
+        $this->assertContains("q1", $queues);
+    }
+}
