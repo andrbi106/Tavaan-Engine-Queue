@@ -97,6 +97,6 @@ final class QueueServiceProvider
     }
     public function pushOn(/* ... */): mixed
     {
-        return null;
+        return $this;
     }
 }
