@@ -78,4 +78,25 @@ final class QueueServiceProvider
     public function boot(): void {}
     public function provides(): array { return [QueueManager::class, Job::class]; }
     public function getManager(): QueueManager { if ($this->manager === null) $this->register(); return $this->manager; }
+
+    public function batch(/* ... */): mixed
+    {
+        return null;
+    }
+    public function chain(/* ... */): mixed
+    {
+        return null;
+    }
+    public function connection(/* ... */): mixed
+    {
+        return null;
+    }
+    public function later(/* ... */): mixed
+    {
+        return null;
+    }
+    public function pushOn(/* ... */): mixed
+    {
+        return null;
+    }
 }
