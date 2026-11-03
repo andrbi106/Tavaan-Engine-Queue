@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Queue\Failed;
 
-use Tavaan\Core\Contracts\Database\ConnectionInterface;
-use Tavaan\Core\Contracts\Queue\FailedJobProviderInterface;
+use Tavaan\Engine\Database\Contracts\ConnectionInterface;
+use Tavaan\Engine\Queue\Contracts\FailedJobProviderInterface;
 use Tavaan\Support\Time\Clock;
 use Tavaan\Support\Ulid;
 

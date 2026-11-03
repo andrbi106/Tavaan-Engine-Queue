@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tavaan\Engine\Queue\Queues;
 
 use Tavaan\Core\Contracts\Container\ContainerInterface;
-use Tavaan\Core\Contracts\Queue\JobInterface;
+use Tavaan\Engine\Queue\Contracts\JobInterface;
 use Tavaan\Engine\Queue\Jobs\RedisJob;
 use Tavaan\Engine\Queue\Redis\RedisClient;
 use Tavaan\Engine\Queue\Redis\RedisClientInterface;

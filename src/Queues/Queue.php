@@ -6,7 +6,7 @@ namespace Tavaan\Engine\Queue\Queues;
 
 use Tavaan\Core\Contracts\Container\ContainerInterface;
 use Tavaan\Core\Contracts\Events\ShouldQueue as EventShouldQueue;
-use Tavaan\Core\Contracts\Queue\QueueInterface;
+use Tavaan\Engine\Queue\Contracts\QueueInterface;
 use Tavaan\Engine\Queue\Serializer;
 use Tavaan\Support\Time\Clock;
 

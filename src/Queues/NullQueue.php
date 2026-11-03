@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Queue\Queues;
 
-use Tavaan\Core\Contracts\Queue\JobInterface;
+use Tavaan\Engine\Queue\Contracts\JobInterface;
 
 /**
  * تَوان | Tavaan — Queue

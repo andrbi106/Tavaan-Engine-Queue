@@ -6,8 +6,8 @@ namespace Tavaan\Engine\Queue\Queues;
 
 use Tavaan\Core\Contracts\Container\ContainerInterface;
 use Tavaan\Core\Contracts\Events\DispatcherInterface;
-use Tavaan\Core\Contracts\Queue\FailedJobProviderInterface;
-use Tavaan\Core\Contracts\Queue\JobInterface;
+use Tavaan\Engine\Queue\Contracts\FailedJobProviderInterface;
+use Tavaan\Engine\Queue\Contracts\JobInterface;
 use Tavaan\Engine\Queue\Events\JobFailed;
 use Tavaan\Engine\Queue\Events\JobProcessed;
 use Tavaan\Engine\Queue\Events\JobProcessing;

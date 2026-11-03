@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Queue\Batch;
 
-use Tavaan\Core\Contracts\Queue\BatchRepositoryInterface;
+use Tavaan\Engine\Queue\Contracts\BatchRepositoryInterface;
 use Tavaan\Support\Time\Clock;
 
 /**

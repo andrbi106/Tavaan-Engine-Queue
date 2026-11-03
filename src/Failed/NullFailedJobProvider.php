@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Queue\Failed;
 
-use Tavaan\Core\Contracts\Queue\FailedJobProviderInterface;
+use Tavaan\Engine\Queue\Contracts\FailedJobProviderInterface;
 use Tavaan\Support\Ulid;
 
 /**

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tavaan\Engine\Queue\Queues;
 
-use Tavaan\Core\Contracts\Database\ConnectionInterface;
-use Tavaan\Core\Contracts\Queue\JobInterface;
+use Tavaan\Engine\Database\Contracts\ConnectionInterface;
+use Tavaan\Engine\Queue\Contracts\JobInterface;
 use Tavaan\Engine\Queue\Jobs\DatabaseJob;
 use Tavaan\Support\Time\Clock;
 

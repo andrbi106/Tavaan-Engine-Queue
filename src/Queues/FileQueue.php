@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tavaan\Engine\Queue\Queues;
 
 use Tavaan\Core\Contracts\Container\ContainerInterface;
-use Tavaan\Core\Contracts\Queue\JobInterface;
+use Tavaan\Engine\Queue\Contracts\JobInterface;
 use Tavaan\Engine\Queue\Exceptions\QueueException;
 use Tavaan\Engine\Queue\Jobs\FileJob;
 use Tavaan\Engine\Queue\Serializer;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tavaan\Engine\Queue\Jobs;
 
 use Tavaan\Core\Contracts\Events\DispatcherInterface;
-use Tavaan\Core\Contracts\Queue\JobInterface;
+use Tavaan\Engine\Queue\Contracts\JobInterface;
 use Tavaan\Engine\Event\EventDispatcher;
 
 /**
